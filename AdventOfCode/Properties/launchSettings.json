@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Day1FrequencyCalibrator": {
+      "commandName": "Project",
+      "commandLineArgs": " .\\resources\\Puzzle1_Input.txt true true"
+    }
+  }
+}

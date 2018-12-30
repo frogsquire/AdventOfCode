@@ -68,39 +68,53 @@ namespace AdventOfCode.Day1FrequencyCalibrator
                 }
             }
 
-            var frequencies = GetAdjustmentChain(adjustments, haltOnDuplicateFrequency);
+            Console.WriteLine("All adjustments read. Calculating frequency adjustment chain (starting from 0)...");
+
+            var frequencies = GetAdjustmentChain(adjustments, haltOnDuplicateFrequency, beVerbose);
             var outputStr = haltOnDuplicateFrequency ? "First duplicate frequency observed: " : "Total of all adjustments (from zero to EOF): ";
 
-            Console.WriteLine(outputStr + GetAdjustmentChain(adjustments).Last());
+            Console.WriteLine(outputStr + frequencies.Last());
         }
 
-        public static List<int> GetAdjustmentChain(List<FrequencyAdjustment> adjustments, bool haltOnDuplicateHistory = false)
+        public static List<int> GetAdjustmentChain(List<FrequencyAdjustment> adjustments, bool haltOnDuplicateHistory = false, bool beVerbose = false)
         {
             var overallFrequencyHistory = new List<int> { InitialFrequency };
 
-            overallFrequencyHistory = IterateOverAllAdjustments(adjustments, overallFrequencyHistory, haltOnDuplicateHistory, out bool duplicateFound);
+            var numberOfPasses = 0;
+
+            overallFrequencyHistory = IterateOverAllAdjustments(adjustments, overallFrequencyHistory, haltOnDuplicateHistory, beVerbose, out bool duplicateFound);
 
             if (haltOnDuplicateHistory && !duplicateFound)
             {
+                // todo: specify maximum iterations
                 while(!duplicateFound)
                 {
-                    overallFrequencyHistory = IterateOverAllAdjustments(adjustments, overallFrequencyHistory, haltOnDuplicateHistory, out duplicateFound);
+                    if (beVerbose) Console.WriteLine("Beginning frequency pass " + ++numberOfPasses);
+                    overallFrequencyHistory = IterateOverAllAdjustments(adjustments, overallFrequencyHistory, haltOnDuplicateHistory, beVerbose, out duplicateFound);
                 }
             }
+
+            Console.WriteLine("Frequency adjustment completed. Total passes started: " + numberOfPasses);
 
             return overallFrequencyHistory;            
         }
 
-        private static List<int> IterateOverAllAdjustments(List<FrequencyAdjustment> adjustments, List<int> frequencyHistory, bool haltOnDuplicateHistory, out bool duplicateFound)
+        private static List<int> IterateOverAllAdjustments(List<FrequencyAdjustment> adjustments, 
+            List<int> frequencyHistory, bool haltOnDuplicateHistory, bool beVerbose, out bool duplicateFound)
         {
             duplicateFound = false;
+
             foreach (var a in adjustments)
             {
                 var nextAdjustment = a.Adjust(frequencyHistory.Last());
+
+                if (beVerbose) Console.WriteLine("Adjusting " + frequencyHistory.Last() + ". New frequency: " + nextAdjustment);
+                
                 var containsNextAdjustment = frequencyHistory.Contains(nextAdjustment);
                 frequencyHistory.Add(nextAdjustment);
                 if (haltOnDuplicateHistory && containsNextAdjustment)
                 {
+                    if (beVerbose) Console.WriteLine("Found duplicate in history list! Exiting.");
                     duplicateFound = true;
                     return frequencyHistory;
                 }
