@@ -19,8 +19,6 @@ namespace AdventOfCode.Day1FrequencyCalibrator
      */
     public class FrequencyCalibratorLauncher
     {
-        private static FrequencyAdjustment StartingAdjustment = new FrequencyAdjustment("+0");
-
         public static void Main(string[] args)
         {
             if (args.Length < 1) Console.WriteLine("You must provide a file path.");
@@ -62,10 +60,7 @@ namespace AdventOfCode.Day1FrequencyCalibrator
         public static int GetTotalAdjustment(List<FrequencyAdjustment> adjustments)
         {
             var i = 0;
-            foreach(var a in adjustments)
-            {
-                i += a.Adjust(i);
-            }
+            adjustments.ForEach(a => i = a.Adjust(i));
             return i; 
         }
 

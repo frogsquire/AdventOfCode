@@ -10,11 +10,14 @@ namespace AdventOfCode.Day1FrequencyCalibrator
      */
     public class FrequencyAdjustment
     {
+        public const string InvalidOperationMessage = "Operation must be plus (+) or minus (-).";
+        public const string InvalidValueMessage = "Value is not an integer.";
+
         // Create a FrequencyAdjustment from a string consisting of an operation/value pair, 
         // which must be in the form [operation][value], e. g. +1, -2, etc.
         public FrequencyAdjustment(string operationValuePair)
         {
-            if (operationValuePair.Length != 2) throw new ArgumentOutOfRangeException("Operation-value pair must have length 2.");
+            if (operationValuePair.Length < 2) throw new ArgumentOutOfRangeException("operationValuePair");
 
             // substrings are used instead of character arrays to avoid having to convert back to string for int.TryParse()
             // using Char.GetNumericValue() was also considered, but that would also require a cast as it returns floating-point values
@@ -28,12 +31,12 @@ namespace AdventOfCode.Day1FrequencyCalibrator
                     _operation = false;
                     break;
                 default:
-                    throw new ArgumentException("Operation must be plus (+) or minus (-).");
+                    throw new ArgumentException(InvalidOperationMessage);
             }      
 
             if (!int.TryParse(operationValuePair.Substring(1), out _value))
             {
-                throw new ArgumentException("Value is not an integer.");
+                throw new ArgumentException(InvalidValueMessage);
             }
         }
 
