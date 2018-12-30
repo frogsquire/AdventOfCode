@@ -103,7 +103,7 @@ namespace AdventOfCode.Day1FrequencyCalibrator
                 new FrequencyAdjustment("-999"),
             };
 
-            Assert.AreEqual(0, FrequencyCalibratorLauncher.GetAdjustmentHistory(adjustments).Last());
+            Assert.AreEqual(0, FrequencyCalibratorLauncher.GetAdjustmentChain(adjustments).Last());
         }
     }
 }
