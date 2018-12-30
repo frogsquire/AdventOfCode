@@ -19,6 +19,8 @@ namespace AdventOfCode.Day1FrequencyCalibrator
      */
     public class FrequencyCalibratorLauncher
     {
+        public const int InitialFrequency = 0;
+
         public static void Main(string[] args)
         {
             if (args.Length < 1) Console.WriteLine("You must provide a file path.");
@@ -54,14 +56,14 @@ namespace AdventOfCode.Day1FrequencyCalibrator
                 }
             }
 
-            Console.WriteLine("Total of all adjustments (from zero): " + GetTotalAdjustment(adjustments));
+            Console.WriteLine("Total of all adjustments (from zero): " + GetAdjustmentHistory(adjustments).Last());
         }
 
-        public static int GetTotalAdjustment(List<FrequencyAdjustment> adjustments)
+        public static List<int> GetAdjustmentHistory(List<FrequencyAdjustment> adjustments)
         {
-            var i = 0;
-            adjustments.ForEach(a => i = a.Adjust(i));
-            return i; 
+            var frequencyHistory = new List<int> { InitialFrequency };
+            adjustments.ForEach(a => frequencyHistory.Add(a.Adjust(frequencyHistory.Last())));
+            return frequencyHistory; 
         }
 
     }

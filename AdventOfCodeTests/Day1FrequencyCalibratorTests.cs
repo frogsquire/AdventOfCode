@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AdventOfCode.Day1FrequencyCalibrator
@@ -102,7 +103,7 @@ namespace AdventOfCode.Day1FrequencyCalibrator
                 new FrequencyAdjustment("-999"),
             };
 
-            Assert.AreEqual(0, FrequencyCalibratorLauncher.GetTotalAdjustment(adjustments));
+            Assert.AreEqual(0, FrequencyCalibratorLauncher.GetAdjustmentHistory(adjustments).Last());
         }
     }
 }
