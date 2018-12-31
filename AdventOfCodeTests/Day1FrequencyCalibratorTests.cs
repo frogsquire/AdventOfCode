@@ -91,7 +91,7 @@ namespace AdventOfCode.Day1FrequencyCalibrator
         }
 
         [Test]
-        public void GetTotalAdjustment_Aggregates_Adjustments()
+        public void GetAdjustmentChain_Aggregates_Adjustments()
         {
             var adjustments = new List<FrequencyAdjustment>()
             {
@@ -105,5 +105,23 @@ namespace AdventOfCode.Day1FrequencyCalibrator
 
             Assert.AreEqual(0, FrequencyCalibratorLauncher.GetAdjustmentChain(adjustments).Last());
         }
+
+        [Test]
+        public void GetAdjustmentChain_Can_Seek_Duplicate_Frequencies()
+        {
+            // first recurring value should be 1 (0+1=1, 1+2=3, 3-2=1)
+            var adjustments = new List<FrequencyAdjustment>()
+            {
+                new FrequencyAdjustment("+1"),
+                new FrequencyAdjustment("+2"),
+                new FrequencyAdjustment("-2"),
+                new FrequencyAdjustment("+3")
+            };
+
+            Assert.AreEqual(1, FrequencyCalibratorLauncher.GetAdjustmentChain(adjustments, true).Last());
+
+        }
+
+        // todo: add tests for duplicate-seeking version of GetAdjustmentChain() that test more complex lists
     }
 }
