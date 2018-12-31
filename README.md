@@ -6,13 +6,15 @@ A series of holiday-themed coding challenges. This implementation is written in 
 
 Open the AdventOfCode solution file. There is one project for each challenge, and a testing project which contains nunit test fixtures for each challenge.
 
-By default, publication is to a Windows x64 executable which requires the .NET Core 2.1 framework.
+By default, these build to DLLs, but the Day 1 challenge has an example publication configuration for a standalone executable.
 
-### Design Goals
+## Design Goals
 
 These solutions are designed primarily to be readable and comprehensible "reference" implementations of the solutions to these challenges. They are purposefully not the most concise, clever, or computation-efficient possible implementations; rather, they are designed to be "developer-efficient," meaning (hopefully) easy to understand and well-organized.
 
 Put another way: The goal is to produce code that the average software developer would have no problem loading up and learning to use fairly quickly, with enough validation (tests) and explanation (comments) to make them easy to understand, but no more than that.
+
+If I've already solved a problem, I probably won't choose to go back and improve it after reading other peoples' solutions, but I will usually annotate it with ways it could be improved.
 
 ## Built With
 

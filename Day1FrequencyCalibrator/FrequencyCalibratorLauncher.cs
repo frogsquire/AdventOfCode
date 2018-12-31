@@ -22,6 +22,10 @@ namespace AdventOfCode.Day1FrequencyCalibrator
      * (loop)
      * 0 + 2 = 2 - but 2 was already seen 
      * (Zero is always assumed to be the starting value.)
+     * 
+     * Ways this code could be improved:
+     *  Use built-in int.Parse() in FrequencyAdjustment instead of manually determining the operation
+     *  Use a HashSet for part 2 (haltOnDuplicateHistory = true) instead of a list to improve speed greatly
      */
     public class FrequencyCalibratorLauncher
     {

@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
+﻿using AdventOfCode.Day1FrequencyCalibrator;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AdventOfCode.Day1FrequencyCalibrator
+namespace AdventOfCodeTests
 {
     /*
      * This fixture has something of a misnomer; it also tests the FrequencyCalibratorLauncher.
