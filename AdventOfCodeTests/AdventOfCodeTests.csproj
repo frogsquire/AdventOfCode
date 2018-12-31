@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode\Day1FrequencyCalibrator.csproj" />
+    <ProjectReference Include="..\Day1FrequencyCalibrator\Day1FrequencyCalibrator.csproj" />
+    <ProjectReference Include="..\Day2BoxIdChecksum\Day2BoxIdChecksum.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Day2BoxIdChecksum": {
+      "commandName": "Project",
+      "commandLineArgs": ".\\resources\\Puzzle2_Input.txt"
+    }
+  }
+}
